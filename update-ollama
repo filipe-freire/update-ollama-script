@@ -6,7 +6,7 @@ blu='\e[1;34m'
 reset='\e[0m'
 
 LATEST_OLLAMA_VERSION=$(curl -s https://api.github.com/repos/ollama/ollama/releases/latest | grep -m 1 tag_name | awk -F ":" '{print $NF}' | tr -d ' ",.' | sed s/v//)
-CURRENT_OLLAMA_VERSION=$(ollama -v | awk '{print $3}' | tr -d '.')
+CURRENT_OLLAMA_VERSION=$(ollama -v | awk '{print $4}' | tr -d '.')
 DOWNLOAD_SCRIPT="curl -fsSL https://ollama.com/install.sh | sh"
 
 if [ "$LATEST_OLLAMA_VERSION" = "" ]; then
@@ -24,4 +24,4 @@ fi
 printf "⚡ ${grn}Downloading newest Ollama version${reset}\n"
 eval $DOWNLOAD_SCRIPT
 
-printf "🎉 ${blu}Done!${reset}\n"
+printf "🎉 ${blu}Done! Ollama updated to ${LATEST_OLLAMA_VERSION}${reset}\n"

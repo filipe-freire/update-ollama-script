@@ -5,6 +5,11 @@ A custom bash script that updates your Ollama version on linux. Until Ollama sup
 ## Prerequisites
 
 - Ollama installed on your system
+- You might need to mark the script as executable by running the following command:
+
+```bash
+chmod +x ./update-ollama
+```
 
 **If you're updating from a previous version:**
 

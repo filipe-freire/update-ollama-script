@@ -28,3 +28,7 @@ sh ./update-ollama
 ## Official Docs
 
 For the official docs on how to install/update ollama, please refer to <https://ollama.com/download/linux>
+
+### Was this script useful to you?
+
+[![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/filipefreire)

@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+# Color variables
+grn='\e[1;32m'
+blu='\e[1;34m'
+reset='\e[0m'
+
+LATEST_OLLAMA_VERSION=$(curl -s https://api.github.com/repos/ollama/ollama/releases/latest | grep -m 1 tag_name | awk -F ":" '{print $NF}' | tr -d ' ",.' | sed s/v//)
+CURRENT_OLLAMA_VERSION=$(ollama -v | awk '{print $3}' | tr -d '.')
+DOWNLOAD_SCRIPT="curl -fsSL https://ollama.com/install.sh | sh"
+
+if [ "$LATEST_OLLAMA_VERSION" = "" ]; then
+  echo "Could not get the latest Ollama version. Please check your internet connection and try again."
+  exit 1
+fi
+
+if [ "$LATEST_OLLAMA_VERSION" = "$CURRENT_OLLAMA_VERSION" ]; then
+  echo "Your Ollama version is up to date! 🎉"
+  exit 0
+else
+  echo "Your current Ollama version is: ${CURRENT_OLLAMA_VERSION} while the latest is: ${LATEST_OLLAMA_VERSION}. Updating now ✅"
+fi
+
+printf "⚡ ${grn}Downloading newest Ollama version${reset}\n"
+eval $DOWNLOAD_SCRIPT
+
+printf "🎉 ${blu}Done!${reset}\n"
